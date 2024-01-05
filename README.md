@@ -1,7 +1,6 @@
 # MMHSD
-# Multimodal Hate Speech Detection
-
-This project implements a multimodal approach to detect hate speech, leveraging both textual and visual data. It's uniquely crafted to scrutinize social media content, identifying potential hate speech by examining the combined context of images and their corresponding text.
+## Project Overview
+This project aims to detect hate speech through a multimodal approach, utilizing both textual and visual data. The goal is to analyze social media content, identifying potential hate speech by assessing images' combined context and corresponding texts.
 
 ## Installation
 Install the required Python packages and dependencies:
@@ -11,13 +10,13 @@ pip install easyocr tqdm
 ```
 
 ## Dataset
-The project uses a combination of image and text data:
+The project uses datasets consisting of images and text:
 
 - **Image Dataset**: `img_resized.zip`
 - **Text Dataset**: `img_txt.zip`
 - **Ground Truth Data**: `MMHS150K_GT.json`
 
-Setup datasets in your project directory:
+Set up the datasets in your project directory:
 
 ```python
 !unzip /path/to/img_resized.zip
@@ -27,44 +26,50 @@ Setup datasets in your project directory:
 ## Code Structure
 
 ### Data Preprocessing
-The code begins with the importation of necessary libraries such as `PIL`, `torch`, `easyocr`, and `nltk`. It sets up the environment for handling both image and text data.
+The code starts with importing libraries such as `PIL`, `torch`, `easyocr`, and `nltk`, setting up the environment for handling image and text data.
 
-### Model Architecture
-- **Neural Network**: The model utilizes a deep learning architecture combining convolutional neural networks (CNNs) for image processing and recurrent neural networks (RNNs) for text processing.
-- **Image Processing**: Employing pre-trained models like ResNet or VGG for feature extraction from images.
-- **Text Processing**: Utilizing GloVe embeddings for text representation, followed by an LSTM or GRU for capturing textual context.
-- **Fusion Layer**: A layer that intelligently combines features from both modalities (text and image) to make a unified prediction.
+### Model Architectures
+The project explores three distinct model architectures:
+
+1. **Model A (Text-Based Model)**:
+   - Utilizes GloVe embeddings for text representation followed by an LSTM/GRU layer for capturing textual context.
+   - Aimed at understanding the textual content of the posts.
+
+2. **Model B (Image-Based Model)**:
+   - Employs a CNN architecture like ResNet or VGG for image feature extraction.
+   - Focuses on analyzing the visual content.
+
+3. **Model C (Fusion Model)**:
+   - A combination of both text and image models.
+   - Integrates features from both modalities using a fusion layer to make a unified prediction.
 
 ### Training and Validation
-- **Training Loop**: Details on batch processing, loss computation (e.g., cross-entropy loss), and optimizer steps (e.g., Adam or SGD).
-- **Validation**: Periodic evaluation of the model on a validation set to monitor performance and avoid overfitting.
+- **Training Loop**: Involves batch processing, computation of loss (e.g., cross-entropy loss), and optimizer steps (e.g., Adam or SGD).
+- **Validation**: Periodic evaluation on a validation set for performance monitoring and overfitting prevention.
 
 ### Evaluation
-- **Metrics**: Usage of F1 score and ROC AUC score for performance measurement.
-- **Model Performance**: Analyzing the balance between precision and recall, understanding the model's ability to generalize across various data samples.
+- **Metrics**: Models are evaluated using F1 score and ROC AUC score.
+- **Model Performance Comparison**: 
+   - Model A showed an accuracy of X%, with strengths in textual analysis but limitations in understanding the context of images.
+   - Model B achieved Y% accuracy, excelling in image interpretation but lacking in textual context understanding.
+   - Model C, the fusion model, outperformed both with an accuracy of Z%, effectively combining textual and visual cues.
+
+## Results and Insights
+- **Accuracy and Analysis**: Discuss the accuracy of each model, highlighting their strengths and weaknesses.
+- **Error Analysis**: Insights from misclassified samples to guide future improvements.
+- **Graphs and Visualizations**: Key graphs illustrating performance trends and comparisons between models.
 
 ## Usage
 
 ### Training the Model
-Run the training script with the necessary dataset paths:
-
 ```python
 python train_model.py --image_data /path/to/img_resized --text_data /path/to/img_txt
 ```
 
 ### Evaluating the Model
-Evaluate the model's performance on a test set:
-
 ```python
 python evaluate_model.py --model /path/to/saved_model --test_data /path/to/test_data
 ```
 
-## Results and Insights
-- **Model Accuracy**: Share insights on the achieved accuracy, discussing any notable successes or challenges encountered.
-- **Error Analysis**: Provide observations from the misclassified samples, which can offer insights for future improvements.
-- **Graphs and Visualizations**: Include key graphs that illustrate the performance trends over different epochs or varying hyperparameters.
-
 ## Contact
-Information for users to reach out with questions, contributions, or feedback.
-email: raqeebmhd619@gmail.com
-
+For questions, contributions, or feedback, reach out at raqeebmhd619@gmail.com.
