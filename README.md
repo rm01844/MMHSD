@@ -1,6 +1,6 @@
-# MMHSD
+# Multimodal Hate Speech Detection
 ## Project Overview
-This project aims to detect hate speech through a multimodal approach, utilizing both textual and visual data. The goal is to analyze social media content, identifying potential hate speech by assessing images' combined context and corresponding texts.
+This project aims to detect hate speech through a multimodal approach, utilizing textual and visual data. The goal is to analyze social media content, identifying potential hate speech by assessing images' combined context and corresponding texts.
 
 ## Installation
 Install the required Python packages and dependencies:
@@ -31,16 +31,17 @@ The code starts with importing libraries such as `PIL`, `torch`, `easyocr`, and 
 ### Model Architectures
 The project explores three distinct model architectures:
 
-1. **Model A (Text-Based Model)**:
-   - Utilizes GloVe embeddings for text representation followed by an LSTM/GRU layer for capturing textual context.
-   - Aimed at understanding the textual content of the posts.
+1. **Model A (LSTM & Inception v3 using Concatenation)**:
+   - Utilizes LSTM and Inception v3.
+   - Uses Concatenation as the fusion technique.
 
-2. **Model B (Image-Based Model)**:
-   - Employs a CNN architecture like ResNet or VGG for image feature extraction.
-   - Focuses on analyzing the visual content.
+2. **Model B**:
+   - Utilizs SBERT and DeiT.
+   - Uses Concatenation as the fusion technique.
 
-3. **Model C (Fusion Model)**:
-   - A combination of both text and image models.
+3. **Model C**:
+   - Utilizes LSTM and DeiT.
+   - Multimodal Infomax is the fusion technique used.
    - Integrates features from both modalities using a fusion layer to make a unified prediction.
 
 ### Training and Validation
@@ -50,9 +51,9 @@ The project explores three distinct model architectures:
 ### Evaluation
 - **Metrics**: Models are evaluated using F1 score and ROC AUC score.
 - **Model Performance Comparison**: 
-   - Model A showed an accuracy of X%, with strengths in textual analysis but limitations in understanding the context of images.
-   - Model B achieved Y% accuracy, excelling in image interpretation but lacking in textual context understanding.
-   - Model C, the fusion model, outperformed both with an accuracy of Z%, effectively combining textual and visual cues.
+   - Model A showed an accuracy of 85.6%, with strengths in textual analysis but limitations in understanding the context of images.
+   - Model B achieved 72.31% accuracy, excelling in image interpretation but lacking textual context understanding.
+   - Model C, the fusion model, outperformed both with an accuracy of 87.3%, effectively combining textual and visual cues.
 
 ## Results and Insights
 - **Accuracy and Analysis**: Discuss the accuracy of each model, highlighting their strengths and weaknesses.
@@ -71,5 +72,3 @@ python train_model.py --image_data /path/to/img_resized --text_data /path/to/img
 python evaluate_model.py --model /path/to/saved_model --test_data /path/to/test_data
 ```
 
-## Contact
-For questions, contributions, or feedback, reach out at raqeebmhd619@gmail.com.
